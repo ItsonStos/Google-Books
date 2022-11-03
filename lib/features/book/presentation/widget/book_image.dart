@@ -19,7 +19,7 @@ class BookImage extends StatelessWidget {
       imageLink,
       width: widthImage,
       height: heigthImage,
-      fit: BoxFit.cover,
+      fit: BoxFit.fill,
       errorBuilder: (context, _, __) {
         return Image.asset(
           'assets/placeholder.jpg',
