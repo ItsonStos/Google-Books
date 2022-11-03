@@ -6,7 +6,7 @@ import 'package:flutter_google_book/features/book/presentation/widget/book_image
 class BookDetailScreen extends StatelessWidget {
   final BookBloc bloc;
   final BookModel bookModel;
-
+  
   const BookDetailScreen({
     super.key,
     required this.bloc,
@@ -25,7 +25,23 @@ class BookDetailScreen extends StatelessWidget {
           ),
           _FavoriteWidget(bookModel),
           const _BackWidget(),
-          _BookFormWidget(bookModel),
+          Container(
+            margin: const EdgeInsets.only(top: 150),
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(16),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.white,
+                  blurRadius: 0.5,
+                ),
+              ],
+            ),
+            child: _BookFormWidget(bookModel),
+          ),
         ],
       ),
     );
@@ -93,28 +109,21 @@ class _BookFormWidget extends StatefulWidget {
 class __BookFormWidgetState extends State<_BookFormWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(top: 150),
-      height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(16),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.white,
-            blurRadius: 0.5,
-          ),
-        ],
-      ),
-      child: ListView(
-        children: [
-          Row(
+    return ListView(
+      padding: const EdgeInsets.all(20),
+      physics: const BouncingScrollPhysics(),
+      children: [
+        SizedBox(
+          height: 100,
+          width: 500,
+          child: Row(
             children: [
               BookImage(
                 imageLink: widget.bookModel.imageLink,
+                heigthImage: 80,
+                widthImage: 80,
               ),
+              const SizedBox(width: 15),
               Expanded(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -127,7 +136,7 @@ class __BookFormWidgetState extends State<_BookFormWidget> {
                       maxLines: 1,
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 14,
+                        fontSize: 16,
                       ),
                     ),
                     Text(
@@ -135,8 +144,17 @@ class __BookFormWidgetState extends State<_BookFormWidget> {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                       style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      '${widget.bookModel.publisher}, ${widget.bookModel.publishedDate}',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12,
                       ),
                     ),
                   ],
@@ -144,17 +162,19 @@ class __BookFormWidgetState extends State<_BookFormWidget> {
               ),
             ],
           ),
-          Text(
-            widget.bookModel.descriptionMinimized,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Text(
+            widget.bookModel.description,
             style: const TextStyle(
               fontWeight: FontWeight.w400,
-              fontSize: 9,
+              fontSize: 16,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
+
