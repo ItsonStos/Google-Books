@@ -6,7 +6,7 @@ import 'package:flutter_google_book/features/book/presentation/widget/book_image
 class BookDetailScreen extends StatelessWidget {
   final BookBloc bloc;
   final BookModel bookModel;
-  
+
   const BookDetailScreen({
     super.key,
     required this.bloc,
@@ -82,11 +82,9 @@ class _BackWidget extends StatelessWidget {
 }
 
 class _BookFormWidget extends StatefulWidget {
-    final BookModel bookModel;
+  final BookModel bookModel;
 
   const _BookFormWidget(this.bookModel);
-
-  
 
   @override
   State<_BookFormWidget> createState() => __BookFormWidgetState();
@@ -110,53 +108,53 @@ class __BookFormWidgetState extends State<_BookFormWidget> {
           ),
         ],
       ),
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      child: 
+      child: ListView(
+        children: [
           Row(
             children: [
-          BookImage(
-            imageLink: widget.bookModel.imageLink,
-          ),
-           const SizedBox(width: 15),
-           Expanded(
-             child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    widget.bookModel.title,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                  ),
-                  ),
-                  Text(
-                    widget.bookModel.authorsNormalize,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                  ),
-                    ),                    
-                ],
+              BookImage(
+                imageLink: widget.bookModel.imageLink,
               ),
-           ),
-            Text(
-                  widget.bookModel.descriptionMinimized,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 9,
-                  ),
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      widget.bookModel.title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      widget.bookModel.authorsNormalize,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
                 ),
+              ),
             ],
           ),
+          Text(
+            widget.bookModel.descriptionMinimized,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: const TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 9,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
-
