@@ -117,13 +117,15 @@ class __BookFormWidgetState extends State<_BookFormWidget> {
           BookImage(
             imageLink: widget.bookModel.imageLink,
           ),
+           const SizedBox(width: 15),
            Expanded(
              child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(widget.bookModel.title,
+                  Text(
+                    widget.bookModel.title,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: const TextStyle(
@@ -133,6 +135,12 @@ class __BookFormWidgetState extends State<_BookFormWidget> {
                   ),
                   Text(
                     widget.bookModel.authorsNormalize,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                  ),
                     ),                    
                 ],
               ),
